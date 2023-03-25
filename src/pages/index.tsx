@@ -7,6 +7,7 @@ import { api } from "y/utils/api";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const { data } = api.posts.getAll.useQuery();
 
   return (
     <>
@@ -19,6 +20,11 @@ const Home: NextPage = () => {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           {hello.data ? hello.data.greeting : "Loading tRPC query..."}
           <AuthShowcase />
+          <div>
+            {data?.map((post) => (
+              <div key={post.id}> {post.content} </div>
+            ))}
+          </div>
         </div>
       </main>
     </>
