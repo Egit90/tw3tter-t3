@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-black text-slate-300;
+}
+
+@layer components {
+  .hoverEffect {
+    @apply h-[52px] w-[52px] cursor-pointer hover:rounded-lg hover:bg-gray-600 xl:h-auto xl:w-auto xl:p-3;
+  }
+}
