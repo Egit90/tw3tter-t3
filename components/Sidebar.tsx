@@ -18,17 +18,17 @@ import { useSession } from "next-auth/react";
 const Sidebar = () => {
   const user = useSession();
   return (
-    <div className="fixed hidden h-full flex-col p-2 sm:flex xl:items-start">
+    <div className="sticky top-0 mx-auto flex h-screen min-h-screen flex-col items-start justify-center p-7 sm:flex">
       {/* logo */}
       <div>
         <img
-          className="m-0 h-24 w-24 cursor-pointer rounded-full p-0 hover:rounded-full hover:bg-gray-600"
+          className=" h-12 cursor-pointer rounded-full hover:rounded-full hover:bg-gray-600"
           src="/Tw3tter.svg"
           alt="Company Logo"
         />
       </div>
       {/* Menu */}
-      <div className="mt-4 mb-2.5 xl:items-start">
+      <div className="mt-1 mb-2.5 xl:items-start">
         <SideBarMenuItems Text="Home" Icon={HomeIcon} />
         <SideBarMenuItems Text="Explore" Icon={HashtagIcon} />
         <SideBarMenuItems Text="Notification" Icon={BellIcon} />
@@ -43,7 +43,7 @@ const Sidebar = () => {
         Tweet
       </button>
       {/* MiniProfile */}
-      <div className="xl:p-3; mt-auto flex cursor-pointer items-center justify-center hover:rounded-lg hover:bg-gray-600 xl:h-auto xl:w-auto xl:justify-start">
+      <div className="hoverEffect mt-auto flex">
         {user && user.data?.user.image ? (
           <>
             <img

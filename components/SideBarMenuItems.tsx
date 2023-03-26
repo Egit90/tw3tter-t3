@@ -13,8 +13,8 @@ interface Props {
 const SideBarMenuItems = ({ Text, Icon }: Props) => {
   return (
     <div className="hoverEffect flex items-center justify-center space-x-3 text-lg xl:justify-start ">
-      <Icon className="h-7" />
-      <span className="hidden xl:inline">{Text}</span>
+      <Icon className="h-8" />
+      <span className="hidden font-bold xl:inline">{Text}</span>
     </div>
   );
 };
