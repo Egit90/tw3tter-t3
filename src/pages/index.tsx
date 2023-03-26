@@ -1,13 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "y/utils/api";
 import Sidebar from "components/Sidebar";
+import Feed from "components/Feed";
+import Info from "components/Info";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const { data, isLoading } = api.posts.getAll.useQuery();
 
   if (!data || isLoading) return <div>Loading ...</div>;
@@ -22,19 +23,9 @@ const Home: NextPage = () => {
         {/* SideBar */}
         <Sidebar />
         {/* Feed */}
-        {/* <div className="h-full w-full border-x border-slate-200   md:max-w-2xl"> */}
-        {/* <div className="flex flex-col border-b border-slate-400 px-8"> */}
-        {/* <CreatePost /> */}
-        {/* <AuthShowcase /> */}
-        {/* </div> */}
-        {/* <div> */}
-        {/* {data.map((post) => ( */}
-        {/* <div key={post.id} className="border-b border-slate-400 p-8"> */}
-        {/* {post.content} */}
-        {/* </div> */}
-        {/* ))} */}
-        {/* </div> */}
-        {/* </div> */}
+
+        <Feed />
+        <Info />
       </main>
     </>
   );
@@ -42,9 +33,11 @@ const Home: NextPage = () => {
 
 export default Home;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
     { enabled: sessionData?.user !== undefined }
@@ -62,27 +55,6 @@ const AuthShowcase: React.FC = () => {
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
-    </div>
-  );
-};
-
-const CreatePost = () => {
-  const { data: sessionData } = useSession();
-  if (!sessionData?.user) return null;
-
-  const image = sessionData.user.image ? sessionData.user.image : "";
-
-  return (
-    <div className="flex gap-8 ">
-      <img
-        src={image}
-        alt="Profile Picture"
-        className="h-14 w-14 rounded-full"
-      ></img>
-      <input
-        placeholder="Tweet!"
-        className="w-full border-none bg-transparent "
-      />
     </div>
   );
 };
