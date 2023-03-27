@@ -2,6 +2,10 @@
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { api } from "y/utils/api";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 const Feed = () => {
   return (
@@ -71,9 +75,14 @@ const Posts = () => {
               />
             ) : null}
             <div className="flex flex-col">
-              <p className="ml-2 text-xl font-bold text-white">
-                @{post.user.name}
-              </p>
+              <span className="flex items-center gap-3">
+                <p className="ml-2 text-xl font-bold text-white">
+                  @{post.user.name}
+                </p>
+                <span className="text-sm">
+                  . {dayjs(post.createdAt).fromNow()}
+                </span>
+              </span>
               <p className="ml-2 text-lg text-white ">{post.content}</p>
             </div>
           </div>
