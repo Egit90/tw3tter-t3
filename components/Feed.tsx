@@ -47,20 +47,20 @@ const Posts = () => {
   return (
     <div className="flex flex-col">
       {data?.map((post) => (
-        <div key={post.post.id} className="border-b border-gray-700 ">
+        <div key={post.id} className="border-b border-gray-700 ">
           <div className="m-6 flex">
-            {post.author.image ? (
+            {post.user.image ? (
               <img
                 className="h-14 w-14 rounded-full"
                 alt="Profile Pic"
-                src={post.author.image}
+                src={post.user.image}
               />
             ) : null}
             <div className="flex flex-col">
               <p className="ml-2 text-xl font-bold text-white">
-                @{post.author.name}
+                @{post.user.name}
               </p>
-              <p className="ml-2 text-lg text-white ">{post.post.content}</p>
+              <p className="ml-2 text-lg text-white ">{post.content}</p>
             </div>
           </div>
         </div>

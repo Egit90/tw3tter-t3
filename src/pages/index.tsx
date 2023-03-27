@@ -21,6 +21,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="mx-auto flex h-screen min-h-screen max-w-7xl justify-center">
         {/* SideBar */}
+        <AuthShowcase />
         <Sidebar />
         {/* Feed */}
 
