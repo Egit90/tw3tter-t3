@@ -19,7 +19,13 @@ const CreatePost = () => {
   if (!sessionData?.user) return null;
 
   const image = sessionData.user.image ? sessionData.user.image : "";
-  const { mutate } = api.posts.create.useMutation();
+  const ctx = api.useContext();
+  const { mutate, isLoading } = api.posts.create.useMutation({
+    onSuccess: () => {
+      setInput("");
+      void ctx.posts.getAll.invalidate();
+    },
+  });
 
   return (
     <div className="flex flex-col border-t border-b border-gray-700">
@@ -35,6 +41,7 @@ const CreatePost = () => {
           className="w-full  border-none  bg-transparent outline-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          disabled={isLoading}
         />
       </div>
       <div className="mx-5 mb-2 border border-gray-700" />

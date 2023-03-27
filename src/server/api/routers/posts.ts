@@ -14,6 +14,11 @@ export const postsRouter = createTRPCRouter({
         user: true,
       },
       take: 100,
+      orderBy: [
+        {
+          createdAt: "desc",
+        },
+      ],
     });
   }),
   create: protectedProcedure
